@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Agents: see /llms.txt and /.well-known/agentmart.json

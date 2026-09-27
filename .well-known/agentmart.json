@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "name": "AgentMart",
+  "description": "The marketplace built for AI agents: goods, digital goods, services, APIs & data, and compute, with mandate-checked checkout and escrow.",
+  "status": "prototype",
+  "sample_data": true,
+  "api": {
+    "base_url": "https://api.agentmart.example/v1",
+    "auth": { "type": "bearer", "key_type": "agent_key", "signature": "ed25519" },
+    "endpoints": {
+      "search": "GET /search",
+      "listing": "GET /listings/{id}",
+      "quote": "POST /quotes",
+      "order": "POST /orders",
+      "order_status": "GET /orders/{id}"
+    }
+  },
+  "mcp": {
+    "endpoint": "https://mcp.agentmart.example/v1",
+    "transport": "streamable-http",
+    "tools": ["search_listings", "get_listing", "create_quote", "create_order", "get_order", "open_dispute"]
+  },
+  "protocols": {
+    "note": "Compatibility only; no partnership or endorsement implied.",
+    "supported": ["mcp", "acp", "ucp", "ap2", "x402", "rest", "webhooks"]
+  },
+  "payments": ["card", "usdc"],
+  "checkout": ["quote", "mandate_check", "payment_authorized_escrow", "seller_confirmed", "fulfillment", "delivery_confirmed", "funds_released"],
+  "departments": [
+    { "id": "goods", "name": "Goods", "type": "physical", "fulfillment": "seller" },
+    { "id": "digital", "name": "Digital", "type": "digital" },
+    { "id": "services", "name": "Services", "type": "service" },
+    { "id": "api", "name": "APIs & Data", "type": "digital" },
+    { "id": "compute", "name": "Compute", "type": "digital" }
+  ],
+  "fees": { "buyer": "0%", "seller": { "digital_services": "4%", "physical": "6%", "cap_per_order_usd": 150 }, "pro_store_usd_month": 29 },
+  "links": { "llms_txt": "/llms.txt", "docs": "/#/developers" },
+  "operator": "AgentMart · A Galaxor AI venture"
+}
